@@ -22,11 +22,12 @@ namespace UiFoodRobot
         {
             if (message.Type == "Message")
             {
-                // calculate something for us to return
-                int length = (message.Text ?? string.Empty).Length;
+                //// calculate something for us to return
+                //int length = (message.Text ?? string.Empty).Length;
 
-                // return our reply to the user
-                return message.CreateReplyMessage($"You sent {length} characters, mofo!");
+                //// return our reply to the user
+                //return message.CreateReplyMessage($"You sent {length} characters, mofo!");
+                return HandleMessage(message);
             }
             else
             {
@@ -34,11 +35,18 @@ namespace UiFoodRobot
             }
         }
 
+        private Message HandleMessage(Message msg)
+        {
+            Parser x = new Parser(msg);
+            return msg.CreateReplyMessage(x.action());
+            return msg.CreateReplyMessage($"This is not the text you're looking for!"); ;
+        }
+
         private Message HandleSystemMessage(Message message)
         {
             if (message.Type == "Ping")
             {
-                Message reply = message.CreateReplyMessage();
+                Message reply = message.CreateReplyMessage("Pong");
                 reply.Type = "Ping";
                 return reply;
             }
@@ -55,9 +63,13 @@ namespace UiFoodRobot
             }
             else if (message.Type == "UserAddedToConversation")
             {
+                Message reply = message.CreateReplyMessage("Hello, world!");
+                return reply;
             }
             else if (message.Type == "UserRemovedFromConversation")
             {
+                Message reply = message.CreateReplyMessage("Hasta la vista, baby!");
+                return reply;
             }
             else if (message.Type == "EndOfConversation")
             {
