@@ -1,17 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using Microsoft.Bot.Connector;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
-using Microsoft.Bot.Connector;
-using Microsoft.Bot.Connector.Utilities;
-using Newtonsoft.Json;
+using UiFoodRobot;
 
-namespace UiFoodRobot
+namespace MondayFoodRobot
 {
-    //[BotAuthentication]
+    [BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
@@ -22,11 +16,7 @@ namespace UiFoodRobot
         {
             if (message.Type == "Message")
             {
-                //// calculate something for us to return
-                //int length = (message.Text ?? string.Empty).Length;
-
-                //// return our reply to the user
-                //return message.CreateReplyMessage($"You sent {length} characters, mofo!");
+                // return our reply to the user
                 return HandleMessage(message);
             }
             else
@@ -34,19 +24,17 @@ namespace UiFoodRobot
                 return HandleSystemMessage(message);
             }
         }
-
-        private Message HandleMessage(Message msg)
+        private Message HandleMessage(Message m)
         {
-            Parser x = new Parser(msg);
-            return msg.CreateReplyMessage(x.action());
-            return msg.CreateReplyMessage($"This is not the text you're looking for!"); ;
+            int length = (m.Text ?? string.Empty).Length;
+            return m.CreateReplyMessage($"You sent {length} characters");
         }
 
         private Message HandleSystemMessage(Message message)
         {
             if (message.Type == "Ping")
             {
-                Message reply = message.CreateReplyMessage("Pong");
+                Message reply = message.CreateReplyMessage();
                 reply.Type = "Ping";
                 return reply;
             }
@@ -63,13 +51,9 @@ namespace UiFoodRobot
             }
             else if (message.Type == "UserAddedToConversation")
             {
-                Message reply = message.CreateReplyMessage("Hello, world!");
-                return reply;
             }
             else if (message.Type == "UserRemovedFromConversation")
             {
-                Message reply = message.CreateReplyMessage("Hasta la vista, baby!");
-                return reply;
             }
             else if (message.Type == "EndOfConversation")
             {
