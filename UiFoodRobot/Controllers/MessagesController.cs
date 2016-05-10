@@ -26,8 +26,21 @@ namespace MondayFoodRobot
         }
         private Message HandleMessage(Message m)
         {
-            int length = (m.Text ?? string.Empty).Length;
-            return m.CreateReplyMessage($"You sent {length} characters");
+            string rm = "";
+            string text = m.Text;
+            if (text == "/h" || text == "/help")
+                rm = "Help message";
+            else if (text == "/o" || text == "/order")
+                rm = "What will it be?";
+            else if (text == "/m" || text == "/menu")
+            {
+                rm = "Here's the menu:\n";
+                rm += "1. No menu\n";
+                rm += "2. You're fat!\n";
+            }
+            else rm = "No comprendes, senor!";
+
+            return m.CreateReplyMessage(rm);
         }
 
         private Message HandleSystemMessage(Message message)
@@ -45,18 +58,24 @@ namespace MondayFoodRobot
             }
             else if (message.Type == "BotAddedToConversation")
             {
+                Message reply = message.CreateReplyMessage("Hello! Type /h or /help for help, /m for menu, /o to order");
+                return reply;
             }
             else if (message.Type == "BotRemovedFromConversation")
             {
             }
             else if (message.Type == "UserAddedToConversation")
             {
+                return message.CreateReplyMessage("Type /h or /help for help, /m for menu, /o to order");
             }
             else if (message.Type == "UserRemovedFromConversation")
             {
+                return message.CreateReplyMessage("Hasta la vista, baby!");
+
             }
             else if (message.Type == "EndOfConversation")
             {
+                return message.CreateReplyMessage("Buh bye!");
             }
 
             return null;
