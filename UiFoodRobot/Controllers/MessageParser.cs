@@ -6,28 +6,73 @@ namespace UiFoodRobot
 {
     internal class MessageParser
     {
+        const string ErrMessage = "Sorry, I could not understand that. I need a command. Please try the keywords \"add\",\"remove\",\"display\",\"quit\".";
+        static readonly List<string> commands = new List<string>() { "add","remove","show","quit"};
         public static Message HandleMessage(Message m)
         {
+            
+            string text = m.Text.Trim().ToLowerInvariant();
             string rm = "";
-            string text = m.Text;
-            if (text == "/h" || text == "/help")
-                rm = "Help message";
-            else if (text == "/o" || text == "/order")
-                rm = "What will it be?";
-            else if (text == "/m" || text == "/menu")
-            {
-                rm = "Here's the menu:\n";
-                rm += "1. No menu\n";
-                rm += "2. You're fat!\n";
-            }
-            else rm = "No comprendes, senor!";
 
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                rm = ErrMessage;
+                return m.CreateReplyMessage(rm);
+            }
+
+            // Look for the first white space
+            var whiteSpaceIndex = text.IndexOf(' ');
+
+            if (whiteSpaceIndex == -1)
+            {
+                rm = (commands.IndexOf(text) >= 0) ? ShowHelp(text) : ErrMessage;
+                //rm += "Whitesapce";
+                return m.CreateReplyMessage(rm);
+            }
+
+            // Extract the action & parameters
+            string action = text.Substring(0, whiteSpaceIndex);
+            string parameters = text.Substring(whiteSpaceIndex + 1);//.split();
+
+            rm = (commands.IndexOf(action) >= 0) ? HandleCommand(action, parameters, m) : ErrMessage;
+            //rm += "comand";
             return m.CreateReplyMessage(rm);
         }
 
-       
+        private static string ShowHelp(string x)
+        {
+            switch(x)
+            {
+                case ("add"):
+                    return "Please type 'add', followed by one or more words describing your command.";
+                case ("remove"):
+                    return "Please type 'remove', followed by the item you want removed.";
+                case ("show"):
+                    return "Typing 'show menu' will show you what you've ordered.";
+                case ("quit"):
+                    return "This is a tricky one. Quit should work alone, and push all changes to the Db.";
+                default:
+                    return "should not reach here";
+            }
+        }
 
-        public static Message HandleSystemMessage(Message message)
+        private static string HandleCommand(string action, string parameters, Message m)
+        {
+            switch (action)
+            {
+                case ("add"):
+                    return action + " [ " + parameters + " ]";
+                case ("remove"):
+                    return action + " [ " + parameters + " ]";
+                case ("show"):
+                    return action + " [ " + parameters + " ]";
+                case ("quit"):
+                    return action + " [ " + parameters + " ]";
+                default:
+                    return "should not reach here";
+            }
+        }
+    public static Message HandleSystemMessage(Message message)
         {
             if (message.Type == "Ping")
             {
