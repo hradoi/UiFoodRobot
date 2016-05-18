@@ -6,42 +6,96 @@ namespace UiFoodRobot
 {
     internal class MessageParser
     {
-        const string ErrMessage = "Sorry, I could not understand that. I need a command. Please try the keywords \"add\",\"remove\",\"display\",\"quit\".";
-        static readonly List<string> commands = new List<string>() { "add","remove","show","quit"};
-        public static Message HandleMessage(Message m)
+        public static Message HandleMessage(Message message)
         {
-            
-            string text = m.Text.Trim().ToLowerInvariant();
-            string rm = "";
+            const string NotSupportMessage = "Sorry, I could not understand that.";
 
-            if (string.IsNullOrWhiteSpace(text))
+            Command command = null;
+            if (Command.TryParse(message.Text, out command) == false)
             {
-                rm = ErrMessage;
-                return m.CreateReplyMessage(rm);
+                return MessageParser.CreateReply(message, NotSupportMessage);
             }
 
-            // Look for the first white space
-            var whiteSpaceIndex = text.IndexOf(' ');
-
-            if (whiteSpaceIndex == -1)
+            switch (command.Action)
             {
-                rm = (commands.IndexOf(text) >= 0) ? ShowHelp(text) : ErrMessage;
-                //rm += "Whitesapce";
-                return m.CreateReplyMessage(rm);
+                case "add":
+                    return MessageParser.HandleAddCommand(command, message);
+                case "clear":
+                    return MessageParser.HandleClearCommand(command, message);
+                default:
+                    return MessageParser.CreateReply(message, NotSupportMessage);
             }
 
-            // Extract the action & parameters
-            string action = text.Substring(0, whiteSpaceIndex);
-            string parameters = text.Substring(whiteSpaceIndex + 1);//.split();
-
-            rm = (commands.IndexOf(action) >= 0) ? HandleCommand(action, parameters, m) : ErrMessage;
-            //rm += "comand";
-            return m.CreateReplyMessage(rm);
+            return message;
         }
+
+        const string ErrMessage = "Sorry, I could not understand that. I need a command. Please try the keywords \"add\",\"remove\",\"show\",\"quit\".";
+        static readonly List<string> commands = new List<string>() { "add", "remove", "show", "quit" };
+        public static Message CreateReply(Message message, string text)
+        {
+            var reply = message.CreateReplyMessage(text);
+            reply.BotUserData = message.BotUserData;
+
+            return reply;
+        }
+
+        public static Message HandleAddCommand(Command command, Message message)
+        {
+            if (string.IsNullOrWhiteSpace(command.Parameters))
+            {
+                return CreateReply(message, "I need a category to keep tally for. Example: add exercise");
+            }
+
+            var category = command.Parameters.ToLowerInvariant();
+            var tallies = message.GetBotUserData<Dictionary<string, int>>("tallies");
+
+            if (tallies == null)
+            {
+                tallies = new Dictionary<string, int>();
+            }
+
+            int tally = 0;
+            tallies.TryGetValue(category, out tally);
+
+            tally += 1;
+            tallies[category] = tally;
+
+            var replyMessage = CreateReply(message, $"The tally for '{category}' has been updated to {tally}");
+
+            // Set the new tally value to the reply message
+            replyMessage.SetBotUserData("tallies", tallies);
+
+            return replyMessage;
+        }
+
+        public static Message HandleClearCommand(Command command, Message message)
+        {
+            if (string.IsNullOrWhiteSpace(command.Parameters))
+            {
+                return CreateReply(message, "I category to reset the tally for. Example: clear coffee");
+            }
+
+            var category = command.Parameters.ToLowerInvariant();
+            var tallies = message.GetBotUserData<Dictionary<string, int>>("tallies");
+
+            if (tallies == null)
+            {
+                tallies = new Dictionary<string, int>();
+            }
+
+            tallies[category] = 0;
+
+            var replyMessage = CreateReply(message, $"The tally for '{category}' has been reset to zero");
+            replyMessage.SetBotUserData("tallies", tallies);
+
+            return replyMessage;
+        }
+
+
 
         private static string ShowHelp(string x)
         {
-            switch(x)
+            switch (x)
             {
                 case ("add"):
                     return "Please type 'add', followed by one or more words describing your command.";
@@ -56,23 +110,7 @@ namespace UiFoodRobot
             }
         }
 
-        private static string HandleCommand(string action, string parameters, Message m)
-        {
-            switch (action)
-            {
-                case ("add"):
-                    return action + " [ " + parameters + " ]";
-                case ("remove"):
-                    return action + " [ " + parameters + " ]";
-                case ("show"):
-                    return action + " [ " + parameters + " ]";
-                case ("quit"):
-                    return action + " [ " + parameters + " ]";
-                default:
-                    return "should not reach here";
-            }
-        }
-    public static Message HandleSystemMessage(Message message)
+        public static Message HandleSystemMessage(Message message)
         {
             if (message.Type == "Ping")
             {
@@ -87,7 +125,7 @@ namespace UiFoodRobot
             }
             else if (message.Type == "BotAddedToConversation")
             {
-                Message reply = message.CreateReplyMessage("Hello! Type /h or /help for help, /m for menu, /o to order");
+                Message reply = message.CreateReplyMessage("Hello!");
                 return reply;
             }
             else if (message.Type == "BotRemovedFromConversation")
@@ -95,7 +133,7 @@ namespace UiFoodRobot
             }
             else if (message.Type == "UserAddedToConversation")
             {
-                return message.CreateReplyMessage("Type /h or /help for help, /m for menu, /o to order");
+                return message.CreateReplyMessage("'Ello there!");
             }
             else if (message.Type == "UserRemovedFromConversation")
             {
@@ -111,3 +149,43 @@ namespace UiFoodRobot
         }
     }
 }
+
+
+
+////deprecated
+//private static Message HandleCommand(string action, string parameters, Message m)
+//{
+//    string rt = "";
+//    var order = m.GetBotUserData<Dictionary<string, int>>("order");
+
+//    if (order == null)
+//    {
+//        order = new Dictionary<string, int>();
+//    }
+//    int x = 0;
+//    switch (action)
+//    {
+//        case ("add"):
+
+//            order.TryGetValue(parameters, out x);
+//            x += 1;
+//            order[parameters] = x;
+//            rt = "Added 1 to " + parameters;
+//            break;
+//        case ("remove"):
+//            order.TryGetValue(parameters, out x);
+//            x -= 1;
+//            order[parameters] = x;
+//            rt = "Removed 1 from " + parameters;
+//            break;
+//        //case ("show"):
+//        //    return action + " [ " + parameters + " ]";
+//        //case ("quit"):
+//        //    return action + " [ " + parameters + " ]";
+//        default:
+//            return m;// "should not reach here";
+//    }
+//    var rm = m.CreateReplyMessage(rt);
+//    rm.SetBotUserData("order", order);
+//    return rm;
+//}

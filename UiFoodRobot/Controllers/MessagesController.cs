@@ -1,7 +1,6 @@
 ﻿using Microsoft.Bot.Connector;
-using System.Threading.Tasks;
 using System.Web.Http;
-using UiFoodRobot;
+using System.Collections.Generic;
 
 namespace UiFoodRobot
 {
@@ -12,11 +11,10 @@ namespace UiFoodRobot
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
-        public async Task<Message> Post([FromBody]Message message)
+         public Message Post([FromBody]Message message)
         {
             if (message.Type == "Message")
             {
-                // return our reply to the user
                 return MessageParser.HandleMessage(message);
             }
             else
@@ -24,6 +22,5 @@ namespace UiFoodRobot
                 return MessageParser.HandleSystemMessage(message);
             }
         }
-      
     }
 }
