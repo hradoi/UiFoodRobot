@@ -1,70 +1,76 @@
 ﻿using Microsoft.Bot.Connector;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace UiFoodRobot
 {
-    internal class MessageParser
+    public class MessageParser
     {
+        const string NotSupportMessage = "Sorry, I could not understand that.";
+        const string cookie = "../../lastUpdate.txt";
+
         public static Message HandleMessage(Message message)
         {
-            const string NotSupportMessage = "Sorry, I could not understand that.";
-
             Command command = null;
             if (Command.TryParse(message.Text, out command) == false)
             {
-                return MessageParser.CreateReply(message, NotSupportMessage);
+                return CreateReply(message, NotSupportMessage);
             }
 
             switch (command.Action)
             {
                 case "add":
-                    return MessageParser.HandleAddCommand(command, message);
+                    return HandleAddCommand(command, message);
                 case "clear":
-                    return MessageParser.HandleClearCommand(command, message);
+                    return HandleClearCommand(command, message);
+                case "delete":
+                    return HandleDeleteCommand(message);
+                case "sudo":
+                    YellowConstructor yc = new YellowConstructor();
+
+                    return CreateReply(message, yc.GetMenu());
                 default:
-                    return MessageParser.CreateReply(message, NotSupportMessage);
+                    return CreateReply(message, NotSupportMessage);
             }
-
-            return message;
         }
-
-        const string ErrMessage = "Sorry, I could not understand that. I need a command. Please try the keywords \"add\",\"remove\",\"show\",\"quit\".";
-        static readonly List<string> commands = new List<string>() { "add", "remove", "show", "quit" };
         public static Message CreateReply(Message message, string text)
         {
             var reply = message.CreateReplyMessage(text);
             reply.BotUserData = message.BotUserData;
-
             return reply;
         }
-
         public static Message HandleAddCommand(Command command, Message message)
         {
             if (string.IsNullOrWhiteSpace(command.Parameters))
             {
-                return CreateReply(message, "I need a category to keep tally for. Example: add exercise");
+                return CreateReply(message, "I need a menu item to add to your oder. Try \"Add burger\" or \"Add soup\"");
             }
 
             var category = command.Parameters.ToLowerInvariant();
-            var tallies = message.GetBotUserData<Dictionary<string, int>>("tallies");
+            var order = message.GetBotUserData<Dictionary<string, int>>("order");
+            var time = message.GetBotUserData<DateTime>("time");
 
-            if (tallies == null)
+            if (order == null)
             {
-                tallies = new Dictionary<string, int>();
+                order = new Dictionary<string, int>();
             }
 
+
+            //FoodObject x = new FoodObject();
+            string xjs = "hodor.";
+
             int tally = 0;
-            tallies.TryGetValue(category, out tally);
+            order.TryGetValue(category, out tally);
 
             tally += 1;
-            tallies[category] = tally;
+            order[category] = tally;
 
-            var replyMessage = CreateReply(message, $"The tally for '{category}' has been updated to {tally}");
+            var replyMessage = CreateReply(message, xjs);
 
             // Set the new tally value to the reply message
-            replyMessage.SetBotUserData("tallies", tallies);
-
+            replyMessage.SetBotUserData("order", order);
+            replyMessage.SetBotUserData("time", DateTime.Now);
             return replyMessage;
         }
 
@@ -76,7 +82,7 @@ namespace UiFoodRobot
             }
 
             var category = command.Parameters.ToLowerInvariant();
-            var tallies = message.GetBotUserData<Dictionary<string, int>>("tallies");
+            var tallies = message.GetBotUserData<Dictionary<string, int>>("order");
 
             if (tallies == null)
             {
@@ -86,28 +92,21 @@ namespace UiFoodRobot
             tallies[category] = 0;
 
             var replyMessage = CreateReply(message, $"The tally for '{category}' has been reset to zero");
-            replyMessage.SetBotUserData("tallies", tallies);
+            replyMessage.SetBotUserData("order", tallies);
 
             return replyMessage;
         }
 
-
-
-        private static string ShowHelp(string x)
+        public static Message HandleDeleteCommand(Message message)
         {
-            switch (x)
+            var tallies = message.GetBotUserData<Dictionary<string, int>>("order");
+            if (tallies != null)
             {
-                case ("add"):
-                    return "Please type 'add', followed by one or more words describing your command.";
-                case ("remove"):
-                    return "Please type 'remove', followed by the item you want removed.";
-                case ("show"):
-                    return "Typing 'show menu' will show you what you've ordered.";
-                case ("quit"):
-                    return "This is a tricky one. Quit should work alone, and push all changes to the Db.";
-                default:
-                    return "should not reach here";
+                tallies = null;
             }
+            var replyMessage = CreateReply(message, $"Your order has been deleted. Please start from scratch.");
+            replyMessage.SetBotUserData("order", tallies);
+            return replyMessage;
         }
 
         public static Message HandleSystemMessage(Message message)
@@ -149,43 +148,3 @@ namespace UiFoodRobot
         }
     }
 }
-
-
-
-////deprecated
-//private static Message HandleCommand(string action, string parameters, Message m)
-//{
-//    string rt = "";
-//    var order = m.GetBotUserData<Dictionary<string, int>>("order");
-
-//    if (order == null)
-//    {
-//        order = new Dictionary<string, int>();
-//    }
-//    int x = 0;
-//    switch (action)
-//    {
-//        case ("add"):
-
-//            order.TryGetValue(parameters, out x);
-//            x += 1;
-//            order[parameters] = x;
-//            rt = "Added 1 to " + parameters;
-//            break;
-//        case ("remove"):
-//            order.TryGetValue(parameters, out x);
-//            x -= 1;
-//            order[parameters] = x;
-//            rt = "Removed 1 from " + parameters;
-//            break;
-//        //case ("show"):
-//        //    return action + " [ " + parameters + " ]";
-//        //case ("quit"):
-//        //    return action + " [ " + parameters + " ]";
-//        default:
-//            return m;// "should not reach here";
-//    }
-//    var rm = m.CreateReplyMessage(rt);
-//    rm.SetBotUserData("order", order);
-//    return rm;
-//}

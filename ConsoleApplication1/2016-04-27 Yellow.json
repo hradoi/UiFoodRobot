@@ -1,0 +1,160 @@
+﻿{  
+   "594f33e5-c34b-436e-b59c-ca6d1279d08b":{  
+      "category":"Desert \u0219i Sucuri naturale",
+      "restriction":[  
+
+      ],
+      "name":"Tort Elys\u00e9es",
+      "img":"https://yellowcontent.blob.core.windows.net/root/5dc109d1-265f-430c-9de9-b2ee3131b7e5.JPG",
+      "price":13.0,
+      "desc":"Un desert festiv in care gustul dulce al mousse-ului de vanilie si gustul ciocolatei belgiene se imbina perfect cu blatul pufos de pandispan. Iti propunem sa savurezi acest deliciu culinar si sa te bucuri de rafinamentul gusturilor si texturilor care il compun."
+   },
+   "6f6dbd91-58ac-4df8-9ebe-6d2e34467532":{  
+      "category":"Desert \u0219i Sucuri naturale",
+      "restriction":[  
+         "Fara Nuci"
+      ],
+      "name":"Mousse schwaarz-weiss",
+      "img":"https://yellowcontent.blob.core.windows.net/root/961a703a-dc8b-49c6-8494-74655fb8cce8.jpg",
+      "price":11.0,
+      "desc":"\u201cArta si savoare\u201d, aceste cuvinte reprezinta cel mai bine acest desert. Un mousse delicat si gustos care iti va face ziua mai frumoasa."
+   },
+   "32a9d507-42de-4c23-8ec0-ee76fada39fe":{  
+      "category":"Supe \u0219i Aperitive",
+      "restriction":[  
+         "Fara Lactate",
+         "Fara Nuci",
+         "Vegetarian"
+      ],
+      "name":"Pachetele de primavara cu sos de soia si sweet-chilli",
+      "img":"https://yellowcontent.blob.core.windows.net/root/f3b941b4-47a9-40f0-b94f-9ddc5a8ff61e.JPG",
+      "price":22.0,
+      "desc":"Bucataria chinezeasca este renumita pentru gustul deosebit si aromele culinare utilizate. Din multitudinea de retete chinezesti delicioase, pachetelele de primavara se remarca prin aroma si textura aparte. Varietatea de legume utilizate in prepararea acestei retete iti va oferi aportul de vitamine atat de necesar in aceasta perioada. Acompaniate de sosul sweet-chilli, pachetelele de primavara devin cu adevarat savuroase.\n*PRODUS DE POST"
+   },
+   "ce75ac15-3874-407b-808b-9e98d82c0732":{  
+      "category":"Desert \u0219i Sucuri naturale",
+      "restriction":[  
+         "Fara Nuci"
+      ],
+      "name":"Tort vanilla-kirsch",
+      "img":"https://yellowcontent.blob.core.windows.net/root/2d0eccbd-f878-4011-a663-ac23f1b77779.jpg",
+      "price":13.0,
+      "desc":"Un desert de provenienta nemteasca cu un gust excelent si o aroma deosebita. Crema fina de vanilie si ciocolata alba, visine aromate si pandispan pufos de cacao - un peparat minunat care iti va incanta simturile."
+   },
+   "c01c3f87-a8fe-4881-8b74-33f93864ce35":{  
+      "category":"Desert \u0219i Sucuri naturale",
+      "restriction":[  
+         "Vegetarian"
+      ],
+      "name":"Mousse cu fructe de padure si fulgi de migdale",
+      "img":"https://yellowcontent.blob.core.windows.net/root/b7ec9a37-359d-4aa7-b842-49ffc33b94c5.JPG",
+      "price":11.0,
+      "desc":"O portie de vitamine, antioxidanti si fibre intr-un singur desert delicios. Am renuntat la ingredientele de origine animala insa nu si la gustul savuros pe care il regasiti in deserturile marca Yellow.Menu. Un mousse dulce-acrisor asezonat cu fulgi de migdale si aromat cu scortisoara, este desertul de post pe care ti-l propunem astazi. *PRODUS DE POST"
+   },
+   "c2855d65-7654-4d3f-a7af-55b0e7413c6b":{  
+      "category":"Supe \u0219i Aperitive",
+      "restriction":[  
+         "Fara Nuci"
+      ],
+      "name":"Supa acra cu legume si porc",
+      "img":"https://yellowapp.blob.core.windows.net/root/cf745f15-a2ec-4f70-a981-aaa6e58cf431.JPG",
+      "price":13.0,
+      "desc":"O supa simpla, delicioasa si sanatoasa din carne de porc frageda si legume de sezon. Patrunjelul are o aroma deosebita, precum si numeroase proprietati nutritive precum vitamine, minerale si flavonoide. Avand un gust delicios aceasta supa este perfecta pentru un antre servit la masa de pranz."
+   },
+   "b6490531-3337-48dc-b635-2839a4e924cc":{  
+      "category":"Fel Principal",
+      "restriction":[  
+         "Fara Nuci"
+      ],
+      "name":"Spaghetti chitarra all'amatriciana",
+      "img":"https://yellowcontent.blob.core.windows.net/root/4f7ab0ee-571a-4e87-bb02-facb71e62760.JPG",
+      "price":28.0,
+      "desc":"Reteta acestui preparat isi ia denumirea dupa orasul Amatrice, din apropierea Romei, considerat de multi italieni drept locul de origine al celor mai buni bucatari din peninsula. Preparata cu panceta, rosii pelati si piper negru, spaghetti chitarra all'amatriciana este una din cele mai cunoscute retete de paste din bucataria italiana."
+   },
+   "892401ab-ef15-4e06-badf-f51abe1e1d6c":{  
+      "category":"Supe \u0219i Aperitive",
+      "restriction":[  
+         "Fara Lactate",
+         "Fara Nuci",
+         "Vegetarian"
+      ],
+      "name":"Supa crema de linte verde cu menta",
+      "img":"https://yellowcontent.blob.core.windows.net/root/c275b79a-7e5d-417c-a971-bb26482032ca.JPG",
+      "price":12.0,
+      "desc":"Supa crema de linte verde este absolut delicioasa si sanatoasa. Bogata in fibre si proteine, lintea verde reprezinta ingredientul perfect pentru o supa savuroasa. Menta proaspata aduce o nota fresh supei si o aroma deosebita."
+   },
+   "40ab938c-8233-4cfc-aaf2-10a7419e2959":{  
+      "category":"Desert \u0219i Sucuri naturale",
+      "restriction":[  
+         "Fara Nuci"
+      ],
+      "name":"Tort L'orangerie",
+      "img":"https://yellowcontent.blob.core.windows.net/root/9152fb68-ebf1-43dd-9376-c0a4ce8acbdf.jpg",
+      "price":13.0,
+      "desc":"Cu o textura fina, imbinand ciocolata neagra cu frisca naturala, aroma de rom si pasta de portocale, obtinem o simfonie de gusturi, un desert cu adevarat exceptional. Merita sa il incerci!"
+   },
+   "17bb547e-4c55-443c-a069-4d133adb4fa6":{  
+      "category":"Supe \u0219i Aperitive",
+      "restriction":[  
+         "Fara Nuci"
+      ],
+      "name":"Orez cu lapte de cocos, prosciutto si legume",
+      "img":"https://yellowcontent.blob.core.windows.net/root/71419c4d-40fb-416c-8c1a-b3ac77f79a77.JPG",
+      "price":32.0,
+      "desc":"O reteta delicioasa pe care iti propunem sa o incerci astazi. Laptele de cocos este deosebit in combinatie cu orezul jasmin. Creeaza un sos perfect, iar textura orezului se schimba complet, devenind mai cremos si delicat. Alaturi de prosciutto si legume sotate si aromate cu civas, menta si fulgi de cocos orezul formeaza un preparat extraodinar de gustos."
+   },
+   "358f3396-f973-42cf-b0a8-2673cad3dc32":{  
+      "category":"Produse WorldClass",
+      "restriction":[  
+
+      ],
+      "name":"File de cod, pesto de busuioc si legume blansate",
+      "img":"https://yellowcontent.blob.core.windows.net/root/b5fb3651-d6a5-4cd6-bcd6-1774673a91f7.jpeg",
+      "price":38.0,
+      "desc":"Codul  este considerat a fi o delicatesa datorita gustului sau deosebit si raritatii acestuia. Este pescuit cu trawlere in Oceanul Atlantic de Nord, in susul Groenlandei. Datorita dietei din fiordurile din jurul Groenlandei si a apei foarte reci, carnea este de culoarea mai alba, iar file-ul are gust deosebit, usor dulce. Noi ti-am pregatit o reteta savuroasa cu acest file de cod. Un preparat care te va incanta prin gust, textura si aroma."
+   },
+   "a7593d43-f135-41a6-a00a-d4bdfec05158":{  
+      "category":"Desert \u0219i Sucuri naturale",
+      "restriction":[  
+         "Fara Lactate",
+         "Fara Nuci"
+      ],
+      "name":"Fresh de banane si portocale",
+      "img":"https://yellowcontent.blob.core.windows.net/root/6e06f676-cb0b-4394-be08-901a23f2854f.JPG",
+      "price":10.0,
+      "desc":"Sucul de portocale si banane abunda in beneficii pentru sanatate si are un gust deosebit. Portocalele sunt bogate in vitamina C, iar bananele aduc un aport consistent de potasiu. Toate aceste elemente sunt excelente pentru organism si iti ofera energie pentru restul zilei. Un fresh care iti va aduce aminte atat de vara ce a trecut cat si de sarbatorile de iarna ce urmeaza."
+   },
+   "b2281b65-53cc-451a-8fee-c47e66f9d1be":{  
+      "category":"Supe \u0219i Aperitive",
+      "restriction":[  
+         "Fara Lactate",
+         "Fara Nuci",
+         "Vegetarian"
+      ],
+      "name":"Edamame (pastai de soia)",
+      "img":"https://yellowcontent.blob.core.windows.net/root/18dd02ad-75ea-4c49-8485-0674f71e7078.jpg",
+      "price":22.0,
+      "desc":"Aliment foarte popular in bucataria asiatica, edemamele au patruns in ultimii ani si pe pietele din America si Europa. Soia verde seamana destul de mult cu fasolea verde: se prezinta sub forma unor teci micute, in interiorul carora sunt boabe verzi de soia.Edamamele sunt adorate atat de vegetarieni, cat si de sportivi, caci sunt o sursa excelenta de nutrienti. Contin proteine, fibre, acizi grasi omega 3 si omega 6, si cateva vitamine si minerale importante, cum ar fi vitamina A, vitamina C, vitamina K, vitamine din grupa B-urilor (B1, B2, B3, B5), magneziu, potasiu, zinc, fosfor.\nCa sa-ti faci o idee mai clara, gandeste-te ca o ceasca de soia verde contine 12 grame de proteine, iar soia verde este o proteina completa deoarece contine toti cei noua aminoacizi care se regasesc si in surse animale (carne, peste, pui, oua).\nSe consuma doar boabele, fara pastai."
+   },
+  "6de994d0-e1a9-46cb-8df7-7037d75c7503": {
+    "category": "Supe și Aperitive",
+    "restriction": [
+      "Fara Lactate",
+      "Fara Nuci"
+    ],
+    "name": "Salata cu calamari pane si rosii cherry",
+    "img": "https://yellowcontent.blob.core.windows.net/root/536ca665-f06f-4b6f-aaa7-465df3d856f6.JPG",
+    "price": 27.0,
+    "desc": "O salata minunata ce imbina gustul delicios al inelelor de calamar, cu aroma fresh a salatelor proaspete si savoarea rosiilor cherry.  Impreuna cu dressing-ul din ulei de masline, miere si lamaie, acest preparat capata un gust deosebit."
+  },
+   "9c3b6fd5-1348-4e77-af0c-bccb42eae61d":{  
+      "category":"Fel Principal",
+      "restriction":[  
+         "Fara Nuci"
+      ],
+      "name":"Piept de pui marinat cu garam masala si orez salbatic",
+      "img":"https://yellowcontent.blob.core.windows.net/root/7a3fbae2-0eb5-46d9-b3da-61ce105d4faf.JPG",
+      "price":28.0,
+      "desc":"Bucataria indiana foloseste numeroase condimente, insa dominanta o au amestecurile numite in marea lor parte, masalas. Acestea sunt folosite de bucatari ca un fel de arma secreta, cu puteri miraculoase, prin care schimba total gustul initial al preparatului, transformandu-l intr-o experienta memorabila. Unul din amestecurile cu cea mai mare popularitate in intreaga lume, este garam masala, un amestec picant, in care am marinat pieptul de pui si alaturi de orezul salbatic, am obtinut un preparat complex si savuros."
+   }
+}
