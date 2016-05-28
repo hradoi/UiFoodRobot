@@ -1,37 +1,28 @@
 ﻿using System;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
+using CrawlerLibrary;
 
-/*  FIREBASE
- * var config = {
-    apiKey: "AIzaSyBKk-NKjbE07HfhqWY1Go-mezRrz6w5o5A",
-    authDomain: "blazing-torch-7475.firebaseapp.com",
-    databaseURL: "https://blazing-torch-7475.firebaseio.com",
-    storageBucket: "blazing-torch-7475.appspot.com",
-  };
- * */
-
-namespace ConsoleApplication1
+namespace ConsoleTester
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            ////var request = (HttpWebRequest)WebRequest.Create("https://blazing-torch-7475.firebaseio.com/");
+            Console.WriteLine(DateTime.Now);
 
-            //IFirebaseConfig config = new FirebaseConfig
-            //{
-            //    AuthSecret = "your_firebase_secret",
-            //    BasePath = "https://blazing-torch-7475.firebaseio.com/"
-            //};
-
-
+            AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine("Before");
-            YellowConstructor x = new YellowConstructor();
-            x.GetMenu();
-            Console.WriteLine("After");
+
+            //Console.WriteLine("Testing Crawler");
+            YellowFoodConstructor x = new YellowFoodConstructor();
+            x.UpdateMenu();
+
+            Console.WriteLine();
+            Console.WriteLine("Testing query");
+
+            foreach (var q in x.Query("porc"))
+                Console.WriteLine(q.Name);
+
+            Console.WriteLine("--End--");
             Console.ReadKey();
         }
     }

@@ -131,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Food.cs" />
+    <Compile Include="Controllers\MessageHandlers.cs" />
     <Compile Include="Controllers\Command.cs" />
     <Compile Include="Controllers\MessageParser.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
@@ -151,7 +151,15 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CrawlerLibrary\CrawlerLibrary.csproj">
+      <Project>{2ff6ae3e-fc3a-4e8b-97e8-b7b3cb95a22e}</Project>
+      <Name>CrawlerLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

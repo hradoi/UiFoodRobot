@@ -54,9 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\YMFoodContext.cs" />
-    <Compile Include="Model\IncomingFoodObject.cs" />
+    <Compile Include="External\Chef.cs" />
+    <Compile Include="External\Details.cs" />
+    <Compile Include="External\Dish.cs" />
+    <Compile Include="External\Dishtag.cs" />
+    <Compile Include="External\IncomingFoodObject.cs" />
+    <Compile Include="External\Intervalcapacity.cs" />
+    <Compile Include="External\Item.cs" />
+    <Compile Include="External\Picture.cs" />
+    <Compile Include="External\Price.cs" />
+    <Compile Include="External\Review.cs" />
+    <Compile Include="External\Source.cs" />
     <Compile Include="Model\OutputMenu.cs" />
-    <Compile Include="YellowConstructor.cs" />
+    <Compile Include="FoodConstructor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

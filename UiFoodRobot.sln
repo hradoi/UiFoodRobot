@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiFoodRobot", "UiFoodRobot\UiFoodRobot.csproj", "{A8BA1066-5695-4D71-ABB4-65E5A5E0C3D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{E8A6460F-824A-4C6D-BE24-7948CE0964C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTester", "ConsoleApplication1\ConsoleTester.csproj", "{E8A6460F-824A-4C6D-BE24-7948CE0964C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrawlerLibrary", "CrawlerLibrary\CrawlerLibrary.csproj", "{2FF6AE3E-FC3A-4E8B-97E8-B7B3CB95A22E}"
 EndProject

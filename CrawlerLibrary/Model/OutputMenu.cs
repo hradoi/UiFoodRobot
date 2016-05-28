@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CrawlerLibrary.Model
 {
     public class OutputMenu
     {
-        public OutputMenu() { Console.WriteLine("In constructor"); }
+        public OutputMenu()
+        {
+
+        }
         public int Id { get; set; }
         public string FoodId { get; set; }
         public string Name { get; set; }
@@ -18,6 +17,6 @@ namespace CrawlerLibrary.Model
         public int Category { get; set; }
         public int Restriction { get; set; }
         public string Source { get; set; }
-
+        public DateTime CrawlTime { get; set; }
     }
 }
