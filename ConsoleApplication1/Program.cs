@@ -12,14 +12,13 @@ namespace ConsoleTester
             AppDomain.CurrentDomain.SetData("DataDirectory", AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine("Before");
 
-            //Console.WriteLine("Testing Crawler");
             YellowFoodConstructor x = new YellowFoodConstructor();
-            x.UpdateMenu();
+            x.UpdateMenu(true);
 
             Console.WriteLine();
             Console.WriteLine("Testing query");
 
-            foreach (var q in x.Query("porc"))
+            foreach (var q in x.SearchTodaysMenu(new string[]{ "porc", "pui" }))
                 Console.WriteLine(q.Name);
 
             Console.WriteLine("--End--");

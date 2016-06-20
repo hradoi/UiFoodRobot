@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-
-namespace UiFoodRobot
+﻿namespace UiFoodRobot
 {
     public class Command
     {
         public string Action { get; set; }
-
-        public string Parameters { get; set; }
-
+        public string[] Parameters { get; set; }
+        
         public static bool TryParse(string text, out Command command)
         {
             command = null;
-
             if (string.IsNullOrWhiteSpace(text))
             {
                 return false;
@@ -24,7 +16,7 @@ namespace UiFoodRobot
             text = text.Trim().ToLowerInvariant();
             command = new Command();
 
-            // Look for the first white space
+            // Look for the first whitespace and split there
             var whiteSpaceIndex = text.IndexOf(' ');
 
             if (whiteSpaceIndex == -1)
@@ -36,8 +28,7 @@ namespace UiFoodRobot
 
             // Extract the action & parameters
             command.Action = text.Substring(0, whiteSpaceIndex).ToLowerInvariant();
-            command.Parameters = text.Substring(whiteSpaceIndex + 1);
-
+            command.Parameters = text.Substring(whiteSpaceIndex + 1).Split();
             return true;
         }
     }

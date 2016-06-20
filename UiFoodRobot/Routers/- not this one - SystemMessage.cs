@@ -1,43 +1,10 @@
 ﻿using Microsoft.Bot.Connector;
-using System.Collections.Generic;
-using System.Linq;
-using System;
-using CrawlerLibrary.Model;
-using CrawlerLibrary.Context;
 
-namespace UiFoodRobot
+namespace UiFoodRobot.Routers
 {
-    public class MessageParser
+    public class SystemMessageRouter
     {
-        const string NotSupportMessage = "Sorry, I could not understand that.";
-
         public static Message HandleMessage(Message message)
-        {
-            Command command = null;
-            if (Command.TryParse(message.Text, out command) == false)
-            {
-                return MessageHandlers.CreateReply(message, NotSupportMessage);
-            }
-            // TODO: add persistence
-            switch (command.Action)
-            {
-                case "add":
-                    return MessageHandlers.HandleAddCommand(command, message);
-                case "clear":
-                    return MessageHandlers.HandleClearCommand(command, message);
-                case "delete":
-                    return MessageHandlers.HandleDeleteCommand(message);
-                case "find":
-                    return MessageHandlers.HandleFindCommand(command, message);
-                case "sudo":
-                    return MessageHandlers.HandleSudo(message);
-                default:
-                    return MessageHandlers.CreateReply(message, NotSupportMessage);
-            }
-
-        }
-
-        public static Message HandleSystemMessage(Message message)
         {
             if (message.Type == "Ping")
             {
