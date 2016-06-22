@@ -21,7 +21,7 @@ namespace CrawlerLibrary
                 return ctx.OutputMenus.Where(m => m.CrawlTime.Day == now.Day).ToList();
         }
 
-        public List<OutputMenu> SearchTodaysMenu(params string[] keywords)
+        public OutputMenu[] SearchTodaysMenu(string[] keywords, bool or = true)
         {
             using (var ctx = new YMFoodContext())
             {
@@ -31,9 +31,9 @@ namespace CrawlerLibrary
                 foreach (string keyword in keywords)
                 {
                     string temp = keyword;
-                    predicate = predicate.Or (p => p.Name.Contains(temp) || p.Description.Contains(temp));
+                    predicate = (or ? predicate.Or(p => p.Name.Contains(temp)) : predicate.And(p => p.Name.Contains(temp)));
                 }
-                return ctx.OutputMenus.AsExpandable().Where(predicate).ToList();
+                return ctx.OutputMenus.AsExpandable().Where(predicate).ToArray();
             }
         }
 

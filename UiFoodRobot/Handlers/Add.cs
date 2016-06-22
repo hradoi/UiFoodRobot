@@ -14,13 +14,15 @@ namespace UiFoodRobot
     {
         public static Message StartCommand(Command command, Message message)
         {
+            message.SetBotUserData("from","add");
             Message replyMessage = Find.CreateCommand(command, message);
-
-            var x =  replyMessage.GetBotUserData<string>("flag");
-            if (x != null)
-                replyMessage.Text = "Yolo";
+            if (replyMessage.GetBotUserData<string>("from") == "find")
+                return replyMessage;
+            OutputMenu[] returnedMenuItems = message.GetBotUserData<OutputMenu[]>("returnedMenuItems");
+            replyMessage.Text = returnedMenuItems[0].Name;
+            
+            replyMessage.Attachments = new Attachment[0];
             return replyMessage;
-            throw new NotImplementedException();
         }
 
         internal static Message FinishCommand(Command command, Message message)

@@ -1,4 +1,6 @@
-﻿namespace UiFoodRobot
+﻿using System.Collections.Generic;
+
+namespace UiFoodRobot
 {
     public class Command
     {
