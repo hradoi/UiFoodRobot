@@ -33,7 +33,7 @@ namespace UiFoodRobot
                     return Sudo.CreateCommand(message);
                 default:
                     //return Reply.ErrorMessage(message);
-                    return Find.TestCreateCommand(command, message);
+                    return Find.CreateCommand(command, message);
             }
 
         }
