@@ -79,9 +79,6 @@ namespace UiFoodRobot
                 }
             }
 
-            //foreach (var item in menuItems)
-            //    replyMessage.Text += item.Name + "\n\n";
-
             if (menuItems.Length < 1)
             {
                 return replyAndClearCookie(message);
@@ -100,9 +97,6 @@ namespace UiFoodRobot
             }
             replyMessage.Attachments.Add(attachment);
 
-            //// persist data
-            ////replyMessage.SetBotUserData("from", message.GetBotUserData<string>("from"));
-            //replyMessage.SetBotUserData("order", message.GetBotUserData<Dictionary<string, int>>("order"));
             replyMessage.SetBotUserData("returnedMenuItems", menuItems);
 
             return replyMessage;

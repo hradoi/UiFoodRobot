@@ -20,8 +20,12 @@ namespace UiFoodRobot
                 return replyMessage;
             OutputMenu[] returnedMenuItems = message.GetBotUserData<OutputMenu[]>("returnedMenuItems");
             replyMessage.Text = returnedMenuItems[0].Name;
-            
-            replyMessage.Attachments = new Attachment[0];
+
+
+            //// persist data
+            ////replyMessage.SetBotUserData("from", message.GetBotUserData<string>("from"));
+            //replyMessage.SetBotUserData("order", message.GetBotUserData<Dictionary<string, int>>("order"));
+
             return replyMessage;
         }
 
