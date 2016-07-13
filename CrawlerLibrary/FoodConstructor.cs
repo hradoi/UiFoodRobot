@@ -21,18 +21,33 @@ namespace CrawlerLibrary
                 return ctx.OutputMenus.Where(m => m.CrawlTime.Day == now.Day).ToList();
         }
 
+        public OutputMenu[] SearchFromSource(string[] keywords, List<OutputMenu> source, bool or = true)
+        {
+            //List<OutputMenu> query = source.Where(m => m.CrawlTime.Day == now.Day).ToList();
+
+            var predicate = or ? PredicateBuilder.False<OutputMenu>() : PredicateBuilder.True<OutputMenu>();
+
+            foreach (string keyword in keywords)
+            {
+                string temp = keyword;
+                predicate = (or ? predicate.Or(p => p.Name.ToLower().Contains(temp)) : predicate.And(p => p.Name.ToLower().Contains(temp)));
+            }
+            return source.AsQueryable().Where(predicate).ToArray();
+        }
+
         public OutputMenu[] SearchTodaysMenu(string[] keywords, bool or = true)
         {
             using (var ctx = new YMFoodContext())
             {
                 IQueryable<OutputMenu> query = ctx.OutputMenus.Where(m => m.CrawlTime.Day == now.Day);
-                var predicate = PredicateBuilder.False<OutputMenu>();
+                var predicate = or ? PredicateBuilder.False<OutputMenu>() : PredicateBuilder.True<OutputMenu>();
 
                 foreach (string keyword in keywords)
                 {
                     string temp = keyword;
-                    predicate = (or ? predicate.Or(p => p.Name.Contains(temp)) : predicate.And(p => p.Name.Contains(temp)));
+                    predicate = (or ? predicate.Or(p => p.Name.ToLower().Contains(temp)) : predicate.And(p => p.Name.ToLower().Contains(temp)));
                 }
+
                 return ctx.OutputMenus.AsExpandable().Where(predicate).ToArray();
             }
         }
@@ -91,5 +106,3 @@ namespace CrawlerLibrary
         }
     }
 }
-
-

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace UiFoodRobot
 {
@@ -30,8 +31,21 @@ namespace UiFoodRobot
 
             // Extract the action & parameters
             command.Action = text.Substring(0, whiteSpaceIndex).ToLowerInvariant();
-            command.Parameters = text.Substring(whiteSpaceIndex + 1).Split();
+            command.Parameters = text.Substring(whiteSpaceIndex + 1).Split(); //procesare de scos "de", "si", "cu" etc.
             return true;
+        }
+
+        internal static bool generateKeywords(Command command, out string[] keywords)
+        {
+            List<string> ignoredKeywords = new List<string> { "de", "si", "cu", "and", "la", "sau" };
+            if (command.Parameters != null)
+            {
+                keywords = command.Parameters.Where(p => !ignoredKeywords.Contains(p)).ToArray();
+                return (keywords.Count() != 0) ? true : false;
+            }
+
+            keywords = null;
+            return false;
         }
     }
 }

@@ -38,70 +38,29 @@ namespace UiFoodRobot
             return replyMessage;
         }
 
-        public static Message CreateCommand(Command command, Message message, bool fromDatabase = false)
+        public static Message Create(Command command, Message message)
         {
+            YellowFoodConstructor x = new YellowFoodConstructor();
+            //x.UpdateMenu();
 
             string[] keywords;
             Message replyMessage = Reply.CreateAttachment(message);
-            OutputMenu[] menuItems;
-            if (!generateKeywords(command, out keywords))
+            if (!Command.generateKeywords(command, out keywords))
                 return replyAndClearCookie(message);
-
-            //choose data source         
-            if (fromDatabase)
-            {
-                // load from database
-                menuItems = loadFromDatabaseUsingCategories(keywords);
-            }
-            else
-            {
-                // load from botuserdata
-                var x = message.GetBotUserData<OutputMenu[]>("returnedMenuItems");
-                if (x != null)
-                {
-                    var temp = new List<OutputMenu>();
-                    foreach (var item in x)
-                        foreach (var keyword in keywords)
-                            if (item.Name.Contains(keyword))
-                                temp.Add(item);
-                    if (!temp.Any())
-                    {
-                        menuItems = loadFromDatabaseUsingCategories(keywords);
-                    }
-                    else
-                    {
-                        menuItems = temp.ToArray();
-                    }
-                }
-                else
-                {
-                    menuItems = loadFromDatabaseUsingCategories(keywords); //fallback if unable to load from botuserdata
-                }
-            }
-
-            if (menuItems.Length < 1)
-            {
-                return replyAndClearCookie(message);
-            }
-
+            var menuItems = x.SearchTodaysMenu(keywords);
             Attachment attachment = new Attachment()
             {
                 Text = "Pick one:",
                 Actions = new List<Bot.Action>()
             };
 
-
-            for (var x = 0; x < menuItems.Length; x++)
+            for (var i = 0; i < menuItems.Length; i++)
             {
-                attachment.Actions.Add(new Bot.Action() { Title = menuItems[x].Name, Message = $"Add {menuItems[x].Name}" });
+                attachment.Actions.Add(new Bot.Action() { Title = menuItems[i].Name, Message = $"Add {menuItems[i].Name}" });
             }
             replyMessage.Attachments.Add(attachment);
-
             replyMessage.SetBotUserData("returnedMenuItems", menuItems);
-
             return replyMessage;
-
-
         }
     }
 }
