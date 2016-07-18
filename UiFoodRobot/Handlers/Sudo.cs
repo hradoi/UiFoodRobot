@@ -10,7 +10,7 @@ namespace UiFoodRobot
         public static Message start(Command command, Message message)
         {
             string rm;
-            if (command.Parameters[0] == "password")
+            if (command.Parameters != null && command.Parameters[0] == "password")
             {
                 YellowFoodConstructor YFC = new YellowFoodConstructor();
                 YFC.UpdateMenu(true);
@@ -18,18 +18,6 @@ namespace UiFoodRobot
                 rm = "Forcefully updated the menu for you!\n\n Here's what's good:\n\n";
                 //foreach (var x in today)
                 //    rm += $"- {x.Name} \n\n";
-
-                Attachment attachment = new Attachment()
-                {
-                    Text = "Pick one:",
-                    Actions = new List<Bot.Action>()
-                };
-
-                for (var i = 0; i < menuItems.Length; i++)
-                {
-                    attachment.Actions.Add(new Bot.Action() { Title = menuItems[i].Name, Message = $"Add {menuItems[i].Name}" });
-                }
-                replyMessage.Attachments.Add(attachment);
             }
             else
                 rm = "Not today, bub!";

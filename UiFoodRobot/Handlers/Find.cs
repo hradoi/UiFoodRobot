@@ -56,7 +56,7 @@ namespace UiFoodRobot
 
             for (var i = 0; i < menuItems.Length; i++)
             {
-                attachment.Actions.Add(new Bot.Action() { Title = menuItems[i].Name, Message = $"Add {menuItems[i].Name}" });
+                attachment.Actions.Add(new Bot.Action() { Title = menuItems[i].Name, Message = $"Add {menuItems[i].Name}", Image = menuItems[i].Img  });
             }
             replyMessage.Attachments.Add(attachment);
             replyMessage.SetBotUserData("returnedMenuItems", menuItems);
